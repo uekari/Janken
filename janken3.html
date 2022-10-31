@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/janken3.css">
+    <title>じゃんけんゲーム</title>
+</head>
+
+<body>
+    <div class="header">
+        <h1 class="title">
+            <span>最</span>
+            <span>初</span>
+            <span>は</span>
+            <span>ぐ</span>
+            <span>〜</span>
+            <span>！</span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </h1>
+    </div>
+
+    <div class="ja_button">
+
+        <div class="gu_img">
+            <input type="image" src="/rdesign_14296.png" id="gu">
+            <audio id="gu_sound" preload="auto">
+                <source src="/audio_16388_sample.m4a" type="audio/mp3">
+            </audio>
+        </div>
+        <div class="cho_img">
+            <input type="image" src="/rdesign_14297.png" id="cho">
+            <audio id="cho_sound" preload="auto">
+                <source src="/audio_16384_sample.m4a" type="audio/mp3">
+            </audio>
+        </div>
+        <div class="pa_img">
+            <input type="image" src="/rdesign_14298.png" id="pa">
+            <audio id="pa_sound" preload="auto">
+                <source src="/audio_16384_sample.m4a" type="audio/mp3">
+            </audio>
+        </div>
+    </div>
+
+    <div class="center">
+        <div class="aaaaa">【あなた】<br><span id="player"></span>
+        </div>
+        <div class="boys">
+            <img src="/janken_boys.png" alt="男の子">
+            <div id="state"></div>
+        </div>
+        <div class="bbbbb">【相手】<br><span id="cpu"></span>
+        </div>
+    </div>
+
+    <div class="resetbutton">
+        <button id="reset">もう一回！！</button>
+    </div>
+
+    <div class="count">
+        <div class="count_win">勝ち数：<span id="win">0</span>回</div>
+        <div class="count_lose">勝ち数：<span id="lose">0</span>回</div>
+    </div>
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+    </script>
+
+    <script>
+        // title のjs //
+        const CLASSNAME = "-visible";
+        const TIMEOUT = 1500;
+        const $target = $(".title");
+
+        setInterval(() => {
+            $target.addClass(CLASSNAME);
+            setTimeout(() => {
+                $target.removeClass(CLASSNAME);
+            }, TIMEOUT);
+        }, TIMEOUT * 2);
+
+
+
+
+
+        // 効果音♪
+
+        window.onload = () => {
+            const se = document.querySelector("#gu_sound");
+            document.querySelector("#gu").addEventListener("click", () => {
+                se.play();
+            });
+        };
+
+        window.onload = () => {
+            const se = document.querySelector("#cho_sound");
+            document.querySelector("#cho").addEventListener("mousemove", () => {
+                se.play();
+            });
+        };
+
+        window.onload = () => {
+            const se = document.querySelector("#pa_sound");
+            document.querySelector("#pa").addEventListener("mousemove", () => {
+                se.play();
+            });
+        };
+
+
+        //index.htmlからidを取得して固定値代入
+        const state = document.getElementById("state");
+        const cpu = document.getElementById("cpu");
+        const gu = document.getElementById("gu");
+        const cho = document.getElementById("cho");
+        const pa = document.getElementById("pa");
+        const player = document.getElementById("player");
+        const reset = document.getElementById("reset");
+        const win = document.getElementById("win");
+        const lose = document.getElementById("lose");
+
+
+
+        //配列にじゃんけんの選択肢を入れる
+        //0="グー",1="チョキ",2="パー"
+        const jans = ["✊", "✌️", "✋"]
+        let playjan;
+        let cpuja;
+        //player勝利数をカウント
+        let winCount = 0;
+        //CPU勝利数をカウント
+        let loseCount = 0;
+
+        //関数start()を呼び出し。
+        start();
+
+        //グーボタンを押した時
+        gu.addEventListener("click", () => {
+            //プレイヤーのテキストにグーを表示
+            player.textContent = jans[0];
+            //プレイヤーの選択肢を格納する変数にグーを格納
+            playjan = jans[0]
+            //CPUの選択肢を格納する変数に配列jansからランダムに取得した選択肢を格納
+            cpuja = jans[Object.keys(jans)[Math.floor(Math.random() * Object.keys(jans).length)]];
+            //上記で取得した変数をCPUのテキストに表示
+            cpu.textContent = cpuja;
+            //関数result()を呼び出し
+            result();
+        })
+        //チョキボタンを押した時
+        cho.addEventListener("click", () => {
+            player.textContent = jans[1];
+            playjan = jans[1]
+            cpuja = jans[Object.keys(jans)[Math.floor(Math.random() * Object.keys(jans).length)]];
+            cpu.textContent = cpuja;
+            result();
+        })
+        //パーボタンを押した時
+        pa.addEventListener("click", () => {
+            player.textContent = jans[2];
+            playjan = jans[2]
+            cpuja = jans[Object.keys(jans)[Math.floor(Math.random() * Object.keys(jans).length)]];
+            cpu.textContent = cpuja;
+            result();
+        })
+
+        //リセットボタンを押した時
+        reset.addEventListener("click", () => {
+            // 関数start()を呼び出し
+            start();
+        })
+
+        //result()の関数です。じゃんけん判定ここで行います。
+        function result() {
+            //プレイヤーとCPUが同じ = あいこ
+            if (playjan === cpuja) {
+                state.textContent = "あいこで..."
+            }
+            //プレイヤーが勝った場合
+            else if (playjan === jans[0] && cpuja === jans[1] || playjan === jans[1] && cpuja === jans[2] || playjan === jans[2] && cpuja === jans[0]) {
+                state.textContent = "Winner!!";
+                //関数display()を呼び出し
+                display()
+                //勝った回数に１プラス
+                winCount++;
+                //勝った回数をテキストに表示
+                win.textContent = winCount;
+            }
+            //CPUが勝った場合
+            else {
+                state.textContent = "Lose...";
+                //関数display()を呼び出し
+                display()
+                //負けた回数に１プラス
+                loseCount++;
+                //負けた回数をテキストに表示
+                lose.textContent = loseCount;
+            }
+        }
+
+        //start()の関数。ボタンの表示、非表示を設定。disabled＝falseだとボタンを表示され、disabled＝tureだと非表示となる。
+        function start() {
+            gu.disabled = false;
+            cho.disabled = false;
+            pa.disabled = false;
+            reset.disabled = true;
+        }
+        //display()の関数。ボタンの表示、非表示を設定。disabled＝falseだとボタンを表示され、disabled＝tureだと非表示となる。
+        function display() {
+            gu.disabled = true;
+            cho.disabled = true;
+            pa.disabled = true;
+            reset.disabled = false;
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>

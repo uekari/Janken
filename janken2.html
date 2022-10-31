@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/janken2.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <header>
+    <div class="header">
+      <h1>あなたは何を出しますか？</h1>
+      <p>最初はぐ〜！じゃんけん・・・</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="main" id="main_gcp">
+
+      <div class="gu">
+        <li id="gu_btn">
+          <img src="/rdesign_14296.png" alt="グー">
+        </li>
+      </div>
+      <div class="cho">
+        <li id="cho_btn">
+          <img src="/rdesign_14297.png" alt="✌️">
+        </li>
+      </div>
+      <div class="par">
+        <li id="par_btn">
+          <img src="/rdesign_14298.png" alt="✋">
+        </li>
+      </div>
+    </div>
+
+    <div class="text">
+      <div class="youbox">
+        <h1>あなた</h1>
+        <div>
+          <div class="you_img">
+            <img src="/rdesign_14296.png" alt="you仮">
+            <!-- あなたが何を出したか表示するとこ（画像） -->
+          </div>
+        </div>
+      </div>
+      <div class="mebox">
+        <h1>PC</h1>
+        <div class="me_img">
+          <img src="/rdesign_14296.png" alt="me仮">
+          <div id="com_hand">
+            <!-- こっちが何を出したか表示するとこ（画像） -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="result">
+      <div id="result">
+        <!-- 結果を表示するところ -->
+      </div>
+    </div>
+    </div>
+
+
+  </main>
+
+  <footer>12345</footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    //ここに処理を追加
+
+    // グーボタンを押した時！
+    $("#gu_btn").on("click", function () {
+      const min = 1;
+      const max = 12;
+      const randomNumber = Math.floor(Math.random() * max - min + 1) + min;
+      console.log(randomNumber);
+
+
+      if (randomNumber === 1) {
+        // alert("グー")
+        $("#com_hand").text("グー✊");
+        $("#result").text("あいこ");
+      }
+      else if (randomNumber === 2) {
+        // alert("チョキ")
+        $("#com_hand").text("チョキ✌️");
+        $("#result").text("あなたの勝ち");
+      }
+      else {
+        // alert("パー")
+        $("#com_hand").text("パー✋");
+        $("#result").text("あなたの負け");
+      }
+    })
+
+
+    // チョキボタンを押した時！
+    $("#cho_btn").on("click", function () {
+
+      const min = 1;
+      const max = 12;
+      const randomNumber = Math.floor(Math.random() * max - min + 1) + min;
+      console.log(randomNumber);
+
+
+      if (randomNumber === 1) {
+        // alert("グー")
+        $("#com_hand").text("グー✊");
+        $("#result").text("あなたの負け");
+      }
+      else if (randomNumber === 2) {
+        // alert("チョキ")
+        $("#com_hand").text("パー✋");
+        $("#result").text("あなたの勝ち");
+      }
+      else {
+        // alert("パー")
+        $("#com_hand").text("チョキ✌️");
+        $("#result").text("あいこ");
+      }
+    })
+
+
+    // パーボタンを押した時！
+    $("#par_btn").on("click", function () {
+
+      const min = 1;
+      const max = 12;
+      const randomNumber = Math.floor(Math.random() * max - min + 1) + min;
+      console.log(randomNumber);
+
+
+      if (randomNumber === 1) {
+        // alert("グー")
+        $("#com_hand").text("グー✊");
+        $("#result").text("あなたの勝ち");
+      }
+      else if (randomNumber === 2) {
+        // alert("チョキ")
+        $("#com_hand").text("チョキ✌️");
+        $("#result").text("あなたの負け");
+      }
+      else {
+        // alert("パー")
+        $("#com_hand").text("パー✋");
+        $("#result").text("あいこ");
+      }
+    })
+
+  </script>
+
+
+
+</body>
+
+</html>

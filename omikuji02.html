@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/sample.css">
+  <title>おみくじ</title>
+</head>
+
+<body>
+  <header>
+    <h1>おみくじ</h1>
+  </header>
+
+  <main>
+    <ul>
+      <li id="pull">おみくじを引く</li>
+    </ul>
+    <p id="echo">結果は？</p>
+  </main>
+
+  <footer>フッター</footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    // ここに処理を追加
+
+
+
+    // document.getElementById("pull").addEventListener("click", fanction(){
+    // alert("ok");
+    // })
+
+    // document.getElementById("echo").addEventListener("click", fanction(){
+    // alert("ng");
+    // })
+
+
+    $("#pull").on("click", function () {
+
+      const min = 1;
+      const max = 10;
+      const randomNumber = Math.floor(Math.random() * max - min + 1) + min;
+      console.log(randomNumber);
+
+
+      if (randomNumber === 1) {
+        // alert("大吉")
+        $("#echo").text("大吉");
+      }
+      else if (randomNumber === 2) {
+        // alert("中吉")
+        $("#echo").text("中吉");
+      }
+      else if (randomNumber === 3) {
+        // alert("小吉")
+        $("#echo").text("小吉");
+      }
+      else if (randomNumber === 4) {
+        // alert("吉")
+        $("#echo").text("吉");
+      }
+      else if (randomNumber === 5) {
+        // alert("凶")
+        $("#echo").text("凶");
+      }
+      else {
+        $("#echo").text("大凶");
+      }
+    })
+
+
+  </script>
+
+</body>
+
+</html>

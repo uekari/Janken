@@ -1,0 +1,247 @@
+@charset "UTF-8";
+
+body {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    font-size: 32px;
+}
+
+header {
+    background-color: #fff;
+    text-align: center;
+}
+
+
+
+/* ８時だよ！全員集合
+   https://noveblo.com/javascript-css-blink/#jump01 */
+
+.title img {
+    width: 300px;
+    margin: 0px 0px 0px 500px;
+    transform: rotateZ(30deg);
+    animation: blink-slow 2s infinite;
+}
+
+@keyframes blink-slow {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/* 志村けんの回転アニメーション（表示）
+   https: //cotodama.co/css_mouseover_img/#i-10 */
+
+.shimura {
+    text-align: center;
+}
+
+.shimura img {
+    margin: -40px 0px 20px;
+    text-align: center;
+    width: 490px;
+    cursor: pointer;
+    transition-duration: 0.7s;
+}
+
+.shimura:hover img {
+    transform: rotateY(360deg);
+    transition-duration: 0.7s;
+}
+
+
+
+/* 志村けんの回転アニメーション（非表示）
+https://iwb.jp/css-animartion-rotation-pattern/#  
+
+header img {
+    text-align: center;
+    width: 400px;
+    margin: 40px 0px;
+}
+
+.shimura {
+    animation: r7 4s linear infinite;
+}
+
+@keyframes r7 {
+    0% {
+        transform: rotateY(0deg);
+    }
+
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+*/
+
+
+/* じゃんけん大会大開催中 */
+
+.open {
+    position: relative;
+    width: 400px;
+    margin: 0 auto;
+    color: #2c2c2f;
+    background: #f688195c;
+}
+
+.square1 {
+    position: absolute;
+    top: -20px;
+    left: 360px;
+    width: 100px;
+    height: 50px;
+    background: rgba(246, 204, 89, 0.277);
+}
+
+.square2 {
+    position: absolute;
+    top: 60px;
+    left: -60px;
+    width: 100px;
+    height: 50px;
+    background: rgba(246, 204, 89, 0.277);
+}
+
+.open h1 {
+    font-size: 30px;
+    color: black;
+    font-family: "M PLUS Rounded 1c";
+    margin: 20px 0px 25px;
+}
+
+
+/* もちろん参加するよね？ */
+
+.yes_or_no p {
+    font-family: "Hannari";
+    font-size: 18px;
+}
+
+
+.tententen p {
+    text-align: center;
+    height: 15px;
+    font-size: 18px;
+    margin: 0px 0px 20px;
+}
+
+
+/* 参加・不参加ボタン
+   https://jajaaan.co.jp/css/button/ */
+
+.button {
+    margin-bottom: 30px;
+}
+
+
+*,
+*:before,
+*:after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+html {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+.btn,
+a.btn,
+button.btn {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1.5;
+    position: relative;
+    display: inline-block;
+    padding: 1rem 4rem;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    color: #212529;
+    border-radius: 0.5rem;
+}
+
+a.btn-emergency {
+    position: relative;
+    display: block;
+    width: 200px;
+    height: 130px;
+    margin: 0 auto;
+}
+
+a.btn-emergency:hover .btn-emergency-top {
+    top: 10px;
+    height: 50px;
+}
+
+a.btn-emergency:active .btn-emergency-top {
+    top: 20px;
+    height: 40px;
+}
+
+.btn-emergency-top {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: 160px;
+    height: 60px;
+    margin-top: 30px;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    border-radius: 0 0 50% 50%;
+    background: #d62d2d;
+}
+
+.btn-emergency-top:before {
+    position: absolute;
+    top: -30px;
+    left: 0;
+    width: 160px;
+    height: 60px;
+    content: "";
+    border-radius: 80px / 30px;
+    background: #ed4c4c;
+}
+
+.btn-emergency-top span {
+    font-size: 38px;
+    font-weight: bold;
+    position: absolute;
+    top: -24px;
+    left: 0;
+    width: 100%;
+    -webkit-transform: scaleY(0.75);
+    transform: scaleY(0.75);
+    text-align: center;
+    color: #f6a3a3;
+}
+
+.btn-emergency-bottom {
+    position: absolute;
+    top: 38px;
+    left: 0;
+    width: 200px;
+    height: 80px;
+    border-radius: 100px / 40px;
+    background: #d8e4ea;
+    -webkit-box-shadow: 0 8px 0 #c4cacc;
+    box-shadow: 0 8px 0 #c4cacc;
+}
